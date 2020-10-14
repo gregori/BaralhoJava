@@ -1,3 +1,5 @@
+import java.security.SecureRandom;
+
 // representa um baralho de 52 cartas
 public class FullDeck {
     private Card[] deck; // vetor de cartas - o baralho em si
@@ -29,5 +31,20 @@ public class FullDeck {
         }
 
         return null;
+    }
+
+    // embaralha as cartas com uma passagem
+    public void shuffle() {
+        currentCard = 0;
+        SecureRandom random = new SecureRandom();
+
+        for (int i = 0; i < deck.length; i++) {
+            // trocar a carta em questão por uma carta aleatória
+            int j = random.nextInt(NUMBER_OF_CARDS); // num. aleatório entre 0 e 51
+
+            Card temp = deck[i];
+            deck[i] = deck[j];
+            deck[j] = temp;
+        }
     }
 }
